@@ -47,6 +47,7 @@ jobs:
       - name: Run Test Container
         run: |
           docker run -d -p 8080:80 --name Test-Nginx my-nginx:latest
+          sleep 5
           curl -f http://localhost:8080
           docker rm -f Test-Nginx
 
