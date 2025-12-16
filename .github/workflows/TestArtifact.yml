@@ -65,6 +65,6 @@ jobs:
 
       - name: Deploy Container
         run: |
-          docker stop nginx-prod || true
-          docker rm nginx-prod || true
+          docker stop Nginx-Prod || true
+          docker rm Nginx-Prod || true
           docker run -d -p 80:80 --name Nginx-Prod my-nginx:latest
