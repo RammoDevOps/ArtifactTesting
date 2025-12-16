@@ -25,7 +25,7 @@ jobs:
       - name: Download-Artifact
         uses: actions/download-artifact@v4
         with:
-          name: Artifact
+          name: TestArtifact
         
       - name: Read Artifact
         run: cat Artifact.txt
