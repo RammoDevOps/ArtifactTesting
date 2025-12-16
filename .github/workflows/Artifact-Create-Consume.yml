@@ -5,34 +5,28 @@ on:
 
 jobs:
   CREATE-ARTIFACT:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ubuntu-latest
     steps:
       - name: Create Artifact
         run: |
-          echo "Random AF" > Artifact2.txt
-          echo "Chao AF" >> Artifact2.txt
+          echo "Random AF" > Artifact.txt
+          echo "Chao AF" >> Artifact.txt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: TestArtifact
-          path: Artifact2.txt
+          path: Artifact.txt
 
   CONSUME-ARTIFACT:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ubuntu-latest
     needs: [ CREATE-ARTIFACT ] 
     steps:
       - name: Download-Artifact
         uses: actions/download-artifact@v4
         with:
-          name: Artifact2.txt
+          name: Artifact.txt
         
       - name: Read Artifact
-        run: cat Artifact2.txt
+        run: cat Artifact.txt
             
