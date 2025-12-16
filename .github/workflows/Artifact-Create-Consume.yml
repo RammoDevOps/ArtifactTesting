@@ -1,0 +1,38 @@
+name: Create-COnsume Artifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  CREATE-ARTIFACT:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    steps:
+      - name: Create Artifact
+        run: |
+          echo "Random AF" > Artifact.txt
+          echo "Chao AF" >> Artifact.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestArtifact
+          path: Artifact.txt
+
+  CONSUME-ARTIFACT:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    needs: [ CREATE-ARTIFACT ] 
+    steps:
+      - name: Download-Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Artifact.txt
+        
+      - name: Read Artifact
+        run: cat Artifact.txt
+            
