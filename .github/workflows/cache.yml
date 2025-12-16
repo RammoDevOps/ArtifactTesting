@@ -42,11 +42,6 @@ jobs:
           --cache-to=type=gha,mode=max \
           -t my-nginx:latest .
 
-      # Move new cache for next run
-      - name: Update Docker cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
       - name: Get Image SHA
         id: get-sha
